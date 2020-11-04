@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+        一、模板语法
+        使用{{}}进行文本插入
+        使用v-html指令输出HTML代码
+        使用v-build（判断use的值，true使用样式，false不使用）缩写:href=
+        vue.js提供了完全的js表达式支持
+        指令v-前缀的特殊属性，用在表达式的值改变时，将某些行为应用到dom上
+        v-on指令，监听dom事件,缩写@click=
+        修饰符用于指出一个指令以特殊的方式绑定
+        v-model指令用在input、select、textarea、checkbox、radio等表单控件元素上创建双向数据绑定，
+        根据表单上的值，自动更新绑定的元素的值。按钮的事件我们可以使用 v-on 监听事件，并对用户的输入进行响应。
+        过滤器函数接受表达式的值作为第一个参数;过滤器可以串联;过滤器是 JavaScript 函数，因此可以接受参数
+
+        二、条件语句
+        条件判断使用v-if语句，可用v-else给v-if添加一个else模块;v-else-if模块,用作 v-if 的 else-if 块
+
+        三、循环语句
+        循环使用 v-for 指令；v-for 指令需要以 site in sites 形式的特殊语法， sites 是源数据数组并且 site 是数组元素迭代的别名。
+        v-for 可以绑定数据到数组来渲染一个列表
+        两个模块一起循环遍历：
+            1.用v-for将另一个模块遍历一遍
+            2.在两个模块之外在包裹一个div，在这个div之上加循环
+            3.使用template来实现（推荐）模块占位符，循环过程中，template不会被渲染到页面上
+        v-for可以通过对象的属性来迭代数据：v-for="value in object"
+            1.两个参数 (value, key)
+            2.三个参数 (value, key, index)
+
+        四、vue.js计算属性（关键词：computed）
+        computed vs methods : computed 是基于它的依赖缓存，只有相关依赖发生改变时才会重新取值。
+                              而使用 methods ，在重新渲染的时候，函数总会重新调用执行。
+        computed 属性默认只有 getter ，不过在需要时你也可以提供一个 setter 
+
+        五、vue.js监听属性
+        通过watch来响应数据的变化
+
+        六、vue.js样式绑定
+        用 v-bind 来设置样式属性,Vue.js v-bind 在处理 class 和 style 时,专门增强了它
+        表达式的结果类型除了字符串之外，还可以是对象或数组。
+        class属性绑定：
+            1.为v-bind:class设置一个对象，从而动态的切换class
+            2.在对象中传入更多属性用来动态切换多个class 
+            3.直接绑定数据里的一个对象（效果与2相同）
+            4.绑定返回对象的计算属性。
+            5.数组语法//    ？三元表达式
+            6.内联样式
+                在 v-bind:style 直接设置样式;
+                直接绑定到一个样式对象;
+                使用数组将多个样式对象应用到一个元素上
+        
+        七、vue.js 事件处理器
+            事件监听使用v-on指令
+            v-on可以接收一个定义的方法来调用
+
+        八、vue.js 表单
+            1.输入框。v-model会根据控件类型自动选取正确的方法来更新元素
+            2.复选框。如果是一个为逻辑值，如果是多个则绑定到同一个数组
+            3.单选按钮
+            4.select列表
+            5.事件修饰符
+                .lazy   在change事件中同步
+                .number 自动将用户的输入值转为number类型
+                .trim   自动过滤用户书输入的首尾空格
+                .stop 阻止事件继续传播
+                .prevent 事件不再重载页面
+                .capture 使用事件捕获模式,即元素自身触发的事件先在此处处理，然后才交由内部元素进行处理
+                .self 只当在 event.target 是当前元素自身时触发处理函数
+                .once 事件将只会触发一次
+                .passive 告诉浏览器你不想阻止事件的默认行为
+
+            九、vue.js组件
+                全局组件：Vue.component(tagName,options)    //tagName为组件名，options为配置选项
+                在实例选项中注册局部组件，组件只能在这个实例中使用
+                prop 是子组件用来接受父组件传递过来的数据的一个自定义属性
+                用 v-bind 动态绑定 props 的值到父组件的数据中。每当父组件的数据变化时，该变化也会传导给子组件(单项绑定，不会反向传递)
+                v-show隐藏是“display:none"、v-if隐藏是"visibility:hidden"
+                ? prop验证
+                使用 v-on 绑定自定义事件,将子组件传递的数据给父组件。 每个 Vue 实例都实现了事件接口(Events interface),简写为@
+                使用$on(eventName)监听事件；使用$emit(eventName)触发事件
+                data必须是一个函数，好处：每个实例可以维护一份被返回对象的独立的拷贝
+
+            十、vue自定义指令
+            定义指令解决的问题或者说使用场景是对普通 DOM 元素进行底层操作
+                v-focus 在页面加载时，元素获得焦点
+                ？ 钩子函数(bind inserted update componentUpdated unbind)
+                参数(el binding[name value oldvalue expression arg modifiers] vnode oldVnode)
+
+            十一、vue路由
+            <router-link> 是一个组件，该组件用于设置一个导航链接，切换不同 HTML 内容。to 属性为目标地址,即要显示的内容。
+            设置 replace 属性的话，当点击时，会调用 router.replace() 而不是 router.push()，导航后不会留下 history 记录。
+            设置 append 属性后，则在当前 (相对) 路径前添加其路径。例如，我们从 /a 导航到一个相对路径 b，如果没有配置 append，则路径为 /b，如果配了，则为 /a/b
+            有时候想要 <router-link> 渲染成某种标签，例如 <li>。 于是我们使用 tag prop 类指定何种标签，同样它还是会监听点击，触发导航。
+            active-class,设置链接激活时使用的CSS类名
+            exact-active-class,配置当链接被精确匹配的时候应该激活的 class
+            event声明可以用来触发导航的事件。可以是一个字符串或是一个包含字符串的数组
+
+            十二、vue过渡&动画
+            transition过渡：
+                单元素/组件过渡
+                多个元素过渡
+                多个组件过渡
+                列表过渡
+            过渡（本质淡入淡出）[v-enter v-enter-active v-enter-to v-learve v-leave-active v-leave-to]
+            需要给同一个元素同时设置两种过渡动效。使用 type 特性并设置 animation 或 transition 来明确声明你需要 Vue 监听的类型
+            当只用 JavaScript 过渡的时候，在 enter 和 leave 中必须使用 done 进行回调。否则，它们将被同步调用，过渡会立即完成。
+            
+            
+         */
+      /* 
+            1.组件与vue实例的区别
+            2.组件通信
+                父传子、子传父：父组件向子组件传递数据是通过prop传递的，子组件传递数据给父组件是通过$emit触发事件来做到的
+                隔代相传：$attrs和$listeners
+                非父子关系：中央事件总线。新建一个Vue事件bus对象，然后通过bus.$emit触发事件，bus.$on监听触发的事件。
+                父组件生命周期内通信：provide和inject
+                子组件自动修改v-model绑定的值：v-model
+                parent和children
+                boradcast和dipatch
+                vuex处理组件之间的数据交互
+                ref通信
+            3.slot卡槽（单个卡槽、具名卡槽）
+            4.生命周期、过滤器
+            5.swiper
+            
+          */
+    </script>
+  </body>
+</html>

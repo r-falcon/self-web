@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .demo-entr-active,
+      .demo-leave-active {
+        transition: opacity 0.3s ease;
+      }
+      .demo-enter,
+      .demo-leave-to {
+        opacity: 0;
+      }
+    </style>
+    <script src="../vue.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <input
+        id="a"
+        type="radio"
+        value="v-a"
+        name="view"
+        @click="view = 'v-a'"
+      />
+      <label for="a">hello</label>
+      <input
+        id="b"
+        type="radio"
+        value="v-b"
+        name="view"
+        @click="view = 'v-b'"
+      />
+      <label for="b">world</label>
+      <transition name="demo" mode="out-in">
+        <component v-bind:is="view"></component>
+      </transition>
+    </div>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          view: 'v-a',
+        },
+        components: {
+          'v-a': {
+            template: '<div>Choose one</div>',
+          },
+          'v-b': {
+            template: '<div>Choose another</div>',
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

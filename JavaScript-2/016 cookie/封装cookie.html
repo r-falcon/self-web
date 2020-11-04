@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script>
+    /* 
+        setCookie()
+        getCookie()
+        removeCookie()
+     */
+    function setCookie(name, value, { expires, path, domain, secure }) {
+      var cookieStr = encodeURIComponent(name) + '=' + encodeURIComponent(value)
+      if (expires) {
+        cookieStr += ';expires=' + afterOfDate(expires)
+      }
+      if (path) {
+        cookieStr += ';path=' + path
+      }
+      if (domain) {
+        cookieStr += ';domain=' + domain
+      }
+      if (secure) {
+        cookieStr += ';secure'
+      }
+      document.cookie = cookieStr
+    }
+
+    //获取n天后的日期
+    function afterOfDate(n) {
+      var d = new Date()
+      var day = d.getDate()
+      d.setDate(n + day)
+      return d
+    }
+  </script>
+  <body></body>
+</html>

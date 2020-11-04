@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../vue.min.js"></script>
+  </head>
+  <body>
+    <!-- 接收一个定义的方法来调用 -->
+    <div id="app">
+      <button v-on:click="demo">click</button>
+    </div>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          name: 'falcon',
+        },
+        methods: {
+          demo: function () {
+            alert('hello ' + this.name)
+            if (event) {
+              alert(event.target.tagName)
+            }
+          },
+        },
+      })
+      app.demo()
+    </script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../vue.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <input type="checkbox" id="checkbox" v-model="checked" />
+      <label for="checkbox">{{checked}}</label>
+      <br />
+      <br />
+      <input
+        type="checkbox"
+        id="checkbox"
+        value="falcon"
+        v-model="checkedNames"
+      />
+      <label for="falcon">falcon</label>
+      <input
+        type="checkbox"
+        id="checkbox"
+        value="alice"
+        v-model="checkedNames"
+      />
+      <label for="alice">alice</label>
+      <input
+        type="checkbox"
+        id="checkbox"
+        value="lily"
+        v-model="checkedNames"
+      />
+      <label for="lily">lily</label>
+      <br />
+      <br />
+      {{checkedNames}}
+    </div>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          checked: false,
+          checkedNames: [],
+        },
+      })
+    </script>
+  </body>
+</html>

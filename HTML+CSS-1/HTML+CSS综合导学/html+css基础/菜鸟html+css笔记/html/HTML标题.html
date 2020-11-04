@@ -1,0 +1,251 @@
+HTML标题<h1></h1>-<h6></h6>
+一个.html文件中只能有一个h1标签
+
+
+
+HTML段落<p></p>
+定义段落方向：显示段落从右到左<p><bdo dir="rtl">从右向左</bdo></p>
+块引用，定义短的引用<q></q>
+定义长的引用<blockquote></blockquote>
+定义引用、引证（作品的标题）<cite></cite>
+定义一个定义项目<dfn></dfn>
+
+
+
+HTML链接<a href=""></a>
+新窗口打开链接<a href="url" target="_blank"></a>
+跳出框架，原框架被替换<a href="url" target="_top"></a>
+在当前页面链接到指定位置<a href="#C4"></a>	<h2><a id="C4">...</h2>
+电子邮件链接<a href="mailto:someone@example.com?Subject=Hello%20again" target="_top">
+发送邮件</a>
+<a href="mailto:someone@example.com?cc=someoneelse@example.com&bcc=andsomeoneelse@example.com&subject=Summer%20Party&body=You%20are%20invited%20to%20a%20big%20summer%20party!" target="_top">发送邮件!</a>
+没有下划线的链接<a href="//www.runoob.com" style="text-decoration: none;">...</a>
+<head><base target="_blank"></head>  会使所有的链接在新的窗口打开
+
+
+
+HTML图像，静图语法与动图语法一样<img src="" />
+边框,图片链接 <img border="" src="" alt="" width="" height="">
+alt属性用来为图像定义一串预备的可替换的文本。（在浏览器无法载入图像时，替换文本属性告诉读者她们失去的信息。）
+创建图像映射<map>
+	<area shape="rect" coords="x1,y1,x2,y2" href="url"><!-- 矩形，左上角顶点坐标（x1，y2),右下角顶点坐标(x2,y2) -->
+	<area shape="circle" coords="x1,y1,r" href="url"><!-- 圆形，圆心坐标（x1，y2),半径r -->
+	<area shape="poly" coords="x1,y1,x2,y2..." href="url"><!-- 多边形，各顶点坐标依次为（x1，y2),(x2,y2),(x3,y3)... -->
+</map>
+定义图像地图中的可点击区域<area shape="" coords="" href="">
+浮动图片<img src="" alt="" style="float: left; width: "32">
+
+
+
+HTML头部<head></head>
+定义HTML文档的标题<title></title>
+定义文档中所有的链接标签的默认URL<base href="">
+描述HTML文档的描述，关键词，作者，字符集等<meta charset="utf-8">
+(外部样式表)定义文档与外部资源之间的关系；定义资源引用地址<link rel="stylesheet" type="text/css" href="">
+(内部样式表)定义文本样式<style type="text/css">
+	h1{color: ;}
+	p{color: ;}
+</style>
+用于加载脚本文件<script type="text/javascript"></script>
+
+
+定义一个元素的背景颜色<body style="background-color: yellow;"></body>
+旧版<body bgcolor="yellow"></body>
+定义文本样式 <p style="font-family: arial;color: red;font-size: 20px"></p>		font-family(字体);color(颜色);font-size(字体大小)
+文本对齐方式	<p style="text-align: center;"></p> align(left,right,center/top,middle,bottom)
+
+
+
+
+换行<br>
+水平线<hr>
+注释<!--...-->
+
+
+
+
+加粗<b></b><strong></strong>
+斜体<i></i><em></em>
+放大<big></big>
+缩小<small></small>
+下标<sub></sub>
+上标<sup></sup>
+删除字<del></del> //会有一条删除线
+插入字<ins></ins>
+缩写<abbr></abbr>
+首字母缩写<acronym></acronym>
+文本居中<center></center>
+
+
+预格式对空行和空格进行控制<pre></pre>
+计算机输出<code></code>
+键盘输出<kbd></kbd>
+打字机文本<tt></tt>
+计算机代码样本<samp></samp>
+计算机变量<var></var>
+地址<address></address>
+
+
+HTML表格<table border="" cellspacing="" cellpadding=""><!--定义表格,border表格边距，cellspacing单元格之间的距离,cellpadding规定单元边沿与其内容之间的空白-->
+	<caption></caption><!--定义表格标题-->
+	<colgroup>
+		<col span="" style=""><!--定义用于表格列的属性-->
+	</colgroup><!--对表格中的列进行组合，以便对其进行格式化-->
+	<thead></thead><!--定义页眉-->
+	<tfoot></tfoot><!--定义页脚-->
+	<tbody></tbody><!--定义主体-->
+	<tr>
+		<th colspan="" rowspan=""></th><!--定义表头,colspan跨列,rowspan跨行-->
+	</tr>
+	<tr><!--定义行-->
+		<td></td><!--定义列-->
+	</tr>
+</table>
+对齐方式：
+align:left\center\right（左右对齐）
+valign:top\middle\bottom（上下对齐）
+
+
+HTML列表<ul style="list-style-type: disc;/circle/square"><!--无序列表,不同类型无序列表-->
+	<li></li>
+</ul>
+<ol start="20" type="a/A/i/I/1"><!--有序列表,不同类型有序列表-->
+	<li></li>
+</ol>
+<dl><!--自定义列表-->
+	<dt></dt>
+	<dd></dd>	
+</dl>
+
+
+
+html区块
+块级元素，用于组合其他HTML元素的容器<div></div>
+内联元素，可用作文本的容器<span></span>
+
+
+
+HTML表单<form accept="">
+	<input type="text" name=""><br><!--文本字段-->
+	<input type="password" name=""><!--密码字段-->
+	<input type="radio/checkbox/submit/botton/reset" name=""><!--单选、复选，提交,创建按钮,重置-->
+	<select name="cars"><!--(预选的)简单的下拉列表-->
+		<optgroup><!--定义选项组-->
+			<option value="volvo">Volvo</option><!--定义下拉列表中的选项-->
+			<option value="saab">Saab</option>
+			<option value="fiat" selected>Fiat</option>
+			<option value="audi">Audi</option>
+		</optgroup>
+	</select>
+</form>
+checked->默认被选中；disabled->不可选，不会被选中（复选框CheckBox中）
+<input type="text" placeholder="请输入用户名"> 会在框框中显示灰色字体
+<option selected disabled>请选择</option> 默认选择这一项，且不能再次选择
+<select size="3" multiple>则可供选择会出来3项，默认为一项//multiple多选属性，可用于选择或文件上传的时候，则一次可以同时上传多个文件
+<input type="radio" name="gender" id="woman"><label for="woman">女</label>   //label标签可以辅助单选框进行选择
+<input type="radio" name="gender" id="man"><label for="man">男</label>
+
+多行文本框<textarea rows="10" cols="30">
+我是一个文本框。
+</textarea>
+
+带边框的表单<form action="">
+<fieldset><!--定义一组相关的表单元素，并使用外框包起来-->
+<legend>Personal information:</legend><!--定义fieldset元素的标题-->
+Name: <input type="text" size="30"><br>
+E-mail: <input type="text" size="30"><br>
+Date of birth: <input type="text" size="10">
+</fieldset>
+</form>
+
+<input list="browsers"><!--指定一个预先定义的输入控件选项列表-->
+<datalist id="browsers">
+  <option value="Internet Explorer">
+  <option value="Firefox">
+  <option value="Chrome">
+  <option value="Opera">
+  <option value="Safari">
+</datalist>
+
+<form action="demo_keygen.asp" method="get">
+  用户名: <input type="text" name="usr_name">
+  加密: <keygen name="security"><!--定义表单的密钥对生成器字段-->
+  <input type="submit">
+</form>
+
+<form oninput="x.value=parseInt(a.value)+parseInt(b.value)">0
+<input type="range" id="a" value="50">100
++<input type="number" id="b" value="50">
+=<output name="x" for="a b"></output><!--output定义一个计算结果-->
+</form>
+
+
+
+HTML表单。定义一个内联的iframe <iframe src=""></iframe>
+
+
+
+HTML脚本<script>用于定义客户端脚本
+document.write("Hello World!");
+</script>
+JavaScript事件响应
+<p id="demo">
+JavaScript 可以触发事件，就像按钮点击。</p>
+
+<script>
+function myFunction()
+{
+	document.getElementById("demo").innerHTML="Hello JavaScript!";
+}
+</script>
+<button type="button" onclick="myFunction()">点我</button>
+
+
+
+HTML字符实体。&nbsp; 空格 &lt; 小于号 &gt; 大于号 &copy; 版权符号
+
+
+
+关于标签嵌套：
+超链接不能嵌套超链接
+p标签不能嵌套p标签
+标题标签h1...h6也不能互相嵌套
+
+关于表单：
+form必须有action属性，表示提交地址
+所有需要提交的数据，input必须有name属性
+input按钮的文字，使用value属性表示
+input必须放在form标签内才能提交
+input常见标签类型：
+text-文本输入框；password-密码输入框；radio-单选框；checkbox-复选框
+button-普通按钮；submit-提交按钮；reset-重置按钮；file-文件选择框
+
+get请求和post请求的区别：
+get请求通常表示获取数据
+post请求通常表示提交数据
+get请求发送的数据都写在地址栏上，用户可见
+post请求发送的数据用户不可见
+get请求不能提交大量数据，但post可以，因此不要混用
+
+关于HTML跳转锚点：
+实现一：#号		id属性
+<a href="#index"></a>
+<h1 id="index"></h1>
+实现二：#号		name属性
+<a href="#index"></a>
+
+<a name="index"></a>
+<h1></h1>
+
+
+
+
+
+
+
+
+
+
+
+
+

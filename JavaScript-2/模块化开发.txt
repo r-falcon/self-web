@@ -1,0 +1,43 @@
+函数分文件存放，【注】全局变量污染问题，内部模块私有化问题（闭包解决）
+
+CommonJS规范(服务器) 编写代码的时候
+  声明：
+    module.exports = {
+      outA : showA,
+      outB : showB
+    }
+    引入：(同步执行)
+      var moduleA = require(module.js)
+      moduleA.outA();
+      moduleA.outB();
+
+AMD规范：(客户端/浏览器)
+声明：
+  define(function(){
+    //代码
+    return{
+      outA:showA,
+      outB:showB
+    }
+  })
+引入：(异步执行)
+  require("moduleA.js",function(moduleA){
+    //这里的代码，模块引入之后执行
+    moduleA.putA();
+    moduleA.outB()
+  })
+  alert("hello world")
+
+ECMA6(模块化规范)异步操作
+  export = {
+    outA:showA
+    outB:showB
+  }
+  import moduleA from "moduleA.js"
+  moduleA.outA()
+  moduleA.outB()
+
+模块化框架--require.js
+  模块化开发的作用域：管理当前页面上引入的所有.js文件
+  defer async = 'true' 引入的所有.js文件都是异步加载
+  data-min = "" 设置入口文件  【注】每一个.html文件都要一个入口文件（入口文件：管理当前.html页面使用的所有.js代码）

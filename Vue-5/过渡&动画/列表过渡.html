@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <script src="../vue.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+    </head>
+    <body>
+        <div>
+        <h1>--列表的进入离开过渡--</h1>
+        <div id="example1">
+            <button @click="add">Add</button>
+            <button @click="remove">Remove</button>
+            <!--tag属性规定列表的开始元素和结束元素，默认为span；
+            必须设置key属性来告诉vue每个元素是不同的；过渡的类将
+            应用在内部元素中-->
+            <transition-group name="list" tag="p">
+                <span v-for="item in items" v-bind:key="item" class="list-item">
+                    {{ item }}
+                </span>
+            </transition-group>
+        </div>
+        <script>        
+        var example1 = new Vue({
+            el: '#example1',
+            data: {
+                items: [1,2,3,4,5,6,7,8,9],
+                nextNum: 10
+            },
+            methods: {
+                randomIndex: function () {
+                    //Math.floor(str)返回小于等于str的一个整数
+                    //Math.random()返回[0,1.0)之间的一个浮点数
+                    return Math.floor(Math.random() * this.items.length)
+                },
+                add: function () {
+                    this.items.splice(this.randomIndex(), 0, this.nextNum++)
+                },
+                remove: function () {
+                    this.items.splice(this.randomIndex(), 1)
+                }
+            }
+        })
+        </script>
+        <style>
+            .list-item{
+                display: inline-block;
+                margin-right: 10px;
+            }
+            .list-enter-active, .list-leave-active {
+                transition: all 1s;
+            }
+            .list-enter, .list-leave-to {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        </style>
+        </div>
+        <div>
+        <h1>--列表的排序过渡(v-move 特性)--</h1>        
+        <div id="example2">
+            <button @click="shuffle">Shuffle</button>
+            <transition-group name="flip-list" tag="ul">
+                <li v-for="item in items" v-bind:key="item">
+                    {{ item }}
+                </li>
+            </transition-group>
+        </div>
+        <script>        
+        var example2 = new Vue({
+            el: '#example2',
+            data: {
+                items: [1,2,3,4,5,6,7,8,9]
+            },
+            methods: {
+                shuffle: function () {
+                    this.items = _.shuffle(this.items)
+                }
+            }
+        })
+        </script>
+        <style>
+            .flip-list-move {
+                transition: transform 1s;
+            }
+        </style>
+        </div>
+        <div>
+        <h1>--列表的排序过渡(例子12结合)--</h1>
+        <div id="example3">
+            <button @click="shuffle">Shuffle</button>
+            <button @click="add">Add</button>
+            <button @click="remove">Remove</button>
+            <transition-group name="list-complete" tag="p">
+                <span v-for="item in items" v-bind:key="item" class="list-complete-item">
+                    {{ item }}
+                </span>
+            </transition-group>
+        </div>
+        <script>        
+        var example3 = new Vue({
+            el: '#example3',
+            data: {
+                items: [1,2,3,4,5,6,7,8,9],
+                nextNum: 10
+            },
+            methods: {
+                randomIndex: function () {
+                    //Math.floor(str)返回小于等于str的一个整数
+                    //Math.random()返回[0,1.0)之间的一个浮点数
+                    return Math.floor(Math.random() * this.items.length)
+                },
+                add: function () {
+                    this.items.splice(this.randomIndex(), 0, this.nextNum++)
+                },
+                remove: function () {
+                    this.items.splice(this.randomIndex(), 1)
+                },
+                shuffle: function () {
+                    this.items = _.shuffle(this.items)
+                }
+            }
+        })
+        </script>
+        <style>
+            .list-complete-item{
+                transition: all 1s;
+                display: inline-block;
+                margin-right: 10px;
+            }
+            .list-complete-enter, .list-complete-leave-to {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            .list-complete-leave-active {
+                position: absolute;
+            }
+        </style>
+        </div>
+        <div>
+        <h1>--多维网格的过渡--</h1>        
+        <div id="example4">
+            <button @click="shuffle">Lazy Sudoku</button>
+            <transition-group name="cell" tag="div" class="sudoku-container">
+                <div v-for="cell in cells" :key="cell.id" class="cell">
+                    {{ cell.number }}
+                </div>
+            </transition-group>
+        </div>
+        <script>        
+        var example4 = new Vue({
+            el: '#example4',
+            data: {
+                cells: Array.apply(null, { length: 81 })//生成一个长度为81的数组
+                    .map(function (_, index) {
+                        return {
+                            id: index,
+                            number: index % 9 + 1
+                        }
+                    })
+            },
+            methods: {
+                shuffle: function () {
+                    this.cells = _.shuffle(this.cells)
+                }
+            }
+        })
+        </script>
+        <style>
+            .sudoku-container {
+                display: flex;
+                flex-wrap: wrap;
+                width: 238px;
+                margin-top: 10px;
+            }
+            .cell {
+              display: flex;
+              justify-content: space-around;
+              align-items: center;
+              width: 25px;
+              height: 25px;
+              border: 1px solid #aaa;
+              margin-right: -1px;
+              margin-bottom: -1px;
+            }
+            .cell:nth-child(3n) {
+              margin-right: 0;
+            }
+            .cell:nth-child(27n) {
+              margin-bottom: 0;
+            }
+            .cell-move {
+              transition: transform 1s;
+            }
+        </style>
+        </div>    
+        <div>
+        <h1>--列表的交错过渡--</h1>        
+        <div id="example5">
+            <input v-model="query"></input>
+            <transition-group
+                name="staggered-fade"
+                tag="ul"
+                v-bind:css="false"
+                v-on:before-enter="beforeEnter"
+                v-on:enter="enter"
+                v-on:leave="leave"
+            >
+                <li
+                    v-for="(item, index) in computedList"
+                    v-bind:key="item.msg"
+                    v-bind:data-index="index"
+                >
+                    {{ item.msg }}
+                </li>
+            </transition-group>
+        </div>
+        <script>        
+        var example5 = new Vue({
+            el: '#example5',
+            data: {
+                query: '',
+                list: [
+                    { msg: 'Bruce Lee' },
+                    { msg: 'Jackie Chan' },
+                    { msg: 'Chuck Norris' },
+                    { msg: 'Jet Li' },
+                    { msg: 'Kung Fury' },
+                    { msg: 'Arya Stark' }
+                ]
+            },
+            computed: {
+                computedList: function () {
+                    var vm = this
+                    return this.list.filter(function (item) {
+                        return item.msg.toLowerCase().indexOf(vm.query.toLowerCase()) !== -1
+                    })
+                }
+            },
+            methods: {
+                beforeEnter: function (el) {
+                    el.style.opacity = 0
+                    el.style.height = 0
+                },
+                enter: function (el, done) {
+                    var delay = el.dataset.index * 150
+                    setTimeout(function () {
+                        Velocity(
+                            el,
+                            { opacity: 1, height: '1.6em' },
+                            { complete: done }
+                        )
+                    }, delay)
+                },
+                leave: function (el, done) {
+                    var delay = el.dataset.index * 150
+                    setTimeout(function () {
+                        Velocity(
+                            el,
+                            { opacity: 0, height: 0 },
+                            { complete: done }
+                        )
+                    }, delay)
+                }
+            }
+        })
+        </script>
+        </div>        
+        <div>
+        <h1>--可复用的过渡--</h1>        
+        <div id="example6">            
+            <my-special-transition>
+                <p v-if="show">Demo</p>
+            </my-special-transition>
+            <button @click="show = !show">Toggle</button>
+        </div>
+        <script>
+        Vue.component('my-special-transition', {
+            template: '\
+                <transition\
+                    name="very-special-transition"\
+                    mode="out-in"\
+                    v-on:before-enter="beforeEnter"\
+                    v-on:enter="enter"\
+                    v-on:leave="leave"\
+                    v-bind:css="false"\
+                >\
+                    <slot></slot>\
+                </transition>\
+            ',
+            methods: {
+                beforeEnter: function (el) {
+                    el.style.opacity = 0
+                    el.style.transformOrigin = 'left'
+                },
+                enter: function (el, done) {
+                    Velocity(el, { opacity: 1, fontSeze: '1.4em' } ,{duration: 300})
+                    Velocity(el, { fontSize: '1em' }, { complete: done })
+                },
+                leave: function (el, done) {
+                    Velocity(el, { translateX: '15px', rotateZ: '50deg' }, { duration: 600 })
+                    Velocity(el, { rotateZ: '100deg' }, { loop: 2 })
+                    Velocity(el, {
+                        rotateZ: '45deg',
+                        translateX: '30px',
+                        translateX: '30px',
+                        opacity: 0
+                    }, { complete: done})
+                },
+            }
+        })        
+        var example6 = new Vue({
+            el: '#example6',
+            data: {
+                show: false
+            }
+        })
+        </script>
+        </div>
+        <div>
+        <h1>--动态过渡--</h1>        
+        <div id="dynamic-fade-demo" class="demo">
+          Fade In: <input type="range" v-model="fadeInDuration" min="0" v-bind:max="maxFadeDuration">
+          Fade Out: <input type="range" v-model="fadeOutDuration" min="0" v-bind:max="maxFadeDuration">
+          <transition
+            v-bind:css="false"
+            v-on:before-enter="beforeEnter"
+            v-on:enter="enter"
+            v-on:leave="leave"
+          >
+            <p v-if="show">hello</p>
+          </transition>
+          <button
+            v-if="stop"
+            v-on:click="stop = false; show = false"
+          >Start animating</button>
+          <button
+            v-else
+            v-on:click="stop = true"
+          >Stop it!</button>
+        </div>
+        <script>
+        new Vue({
+          el: '#dynamic-fade-demo',
+          data: {
+            show: true,
+            fadeInDuration: 1000,
+            fadeOutDuration: 1000,
+            maxFadeDuration: 1500,
+            stop: true
+          },
+          mounted: function () {
+            this.show = false
+          },
+          methods: {
+            beforeEnter: function (el) {
+              el.style.opacity = 0
+            },
+            enter: function (el, done) {
+              var vm = this
+              Velocity(el,
+                { opacity: 1 },
+                {
+                  duration: this.fadeInDuration,
+                  complete: function () {
+                    done()
+                    if (!vm.stop) vm.show = false
+                  }
+                }
+              )
+            },
+            leave: function (el, done) {
+              var vm = this
+              Velocity(el,
+                { opacity: 0 },
+                {
+                  duration: this.fadeOutDuration,
+                  complete: function () {
+                    done()
+                    vm.show = true
+                  }
+                }
+              )
+            }
+          }
+        })
+        </script>
+        </div>            
+    </body>
+</html>

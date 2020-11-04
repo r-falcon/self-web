@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /*
+          success 数据下载成功以后执行的函数
+          error 数据下载失败以后执行的函数
+       */
+      function $ajax({ method = "get", url, data, success, error }) {
+        //1.创建Ajax对象
+        var xhr = null;
+        try {
+          xhr = new XMLHttpRequest();
+        } catch (error) {
+          xhr = new ActiveXObject("microsoft.XMLHTTP");
+        }
+
+        //判断如果数据存在
+        if (data) {
+          data = querystring(data);
+        }
+
+        if (method == "get" && data) {
+          url += "?" + data;
+        }
+
+        //2.调用open
+        xhr.open(method, url, true);
+
+        //3.调用send
+        if (method == "get") {
+          xhr.send();
+        } else {
+          xhr.setRequestHeader(
+            "content-type",
+            "application/x-www-form-urlencoded"
+          );
+          xhr.send(data);
+        }
+
+        //4.等待数据响应
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4) {
+            //判断本次下载的状态码是多少
+            if (xhr.status == 200) {
+              /*
+                      如何去处理数据操作不确定
+                      回调函数
+                   */
+              success(xhr.responseText);
+            } else {
+              if (error) {
+                error("Error:" + xhr.status);
+              }
+            }
+          }
+        };
+      }
+
+      //querystring函数封装，将对象转换为查询字符串
+      function querystring(obj) {
+        var str = "";
+        for (var arr in obj) {
+          str += attr + "=" + obj[attr] + "&";
+        }
+        return str.substring(0, str.length - 1);
+      }
+
+      window.onload = function () {
+        var oGetBtn = document.getElementById("getBtn");
+        var oPostBtn = document.getElementById("postBtn");
+        //1.get请求
+        oGetBtn.onclick = function () {
+          $ajax({
+            url: "get.php",
+            data: {
+              username: "falcon",
+              age: 18,
+              password: "123",
+            },
+            success: function (result) {
+              alert(result);
+            },
+            error: function (msg) {
+              alert(msg);
+            },
+          });
+        };
+
+        //2.post请求
+        oPostBtn.onclick = function () {
+          $ajax({
+            method: "post",
+            url: "post.php",
+            data: {
+              username: "falcon",
+              age: 18,
+              password: "123",
+            },
+            success: function (result) {
+              alert(result);
+            },
+            error: function (msg) {
+              alert(msg);
+            },
+          });
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <button id="getBtn">GET请求</button>
+    <button id="postBtn">POST请求</button>
+  </body>
+</html>

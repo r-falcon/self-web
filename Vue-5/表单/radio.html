@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../vue.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <input type="radio" id="radio" value="falcon" v-model="picked" />
+      <label for="falcon">falcon</label>
+      <input type="radio" id="radio" value="alice" v-model="picked" />
+      <label for="alice">alice</label>
+      <input type="radio" id="radio" value="lily" v-model="picked" />
+      <label for="lily">lily</label>
+      <br />
+      <br />
+      {{picked}}
+    </div>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          picked: [],
+        },
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /* DOM笔记
+        DOM:document object mode(文档对象模型)
+            节点类型：
+                元素节点    <div></div>
+                属性节点    id='div1'
+                文本节点    div文本
+        元素节点的获取
+            1.document.getElementById(id)
+                功能：通过id获取符合条件的元素，（id必须是唯一的）
+                返回值：就是符合条件的一个节点
+            2.node.getElementsByTagName(标签名);
+                功能：从node节点开始，通过标签名获取符合条件的元素节点
+                返回值：伪数组/类数组
+            3.node.getElementsByClassName(class名字)  （IE8以下不兼容）
+                功能：通过class名字获取符合条件的元素节点
+            4.document.getElementsByName(name属性的值);
+                功能：通过name属性的值获取符合条件的元素节点
+                【注】一般使用在表单元素里
+            5.document.querySelector()
+                参数：字符串  CSS选择器格式的字符串
+                返回值：一个元素节点。找到符合条件的第一个元素节点
+            6.document.querySelectorAll()
+                参数：字符串  CSS选择器格式的字符串
+                返回值：一个伪数组（可以输出数组长度，进行数组遍历）
+            5.6.
+                var node=document.querySelector("#ol1");//id
+                var node=document.querySelector("li");//标签
+                var node=document.querySelector(".box");//类class
+
+         */
+
+
+        window.onload=function{
+            //写在这里的代码，是整个页面加载完成以后执行
+            var oDiv = document.getElementById("div1");
+            alert(oDiv);
+            //获取行间属性
+            alert(oDiv.id);
+            alert(oDiv.title);
+            //访问class 通过className访问
+            alert(oDiv.className);
+            //设置行间属性的值
+            oDiv.id="div2";
+            oDiv.title="world";
+            oDiv.classNam="box4";
+
+            /*
+                【注】只能访问标签行间的css样式
+             */
+            alert(oDiv.style.width);
+            alert(oDiv.style.height);
+            /*
+                【注】如果css样式带-，将-去掉，从第二个单词开始首字母大写
+             */
+            alert(oDiv.style.backgroundColor);
+
+            oDiv.style.backgroundColor="blue";
+        }
+
+        window.onload{
+            //var aLis=document.getElementsById("li");
+            //alert(aLis);  本质是对象，使用起来和数组类似，一般情况，把这种情况叫做伪数组/类数组
+
+            /* var oOl=document.getElementsById("ol1");
+            var aLis=oOl.getElementsByTagName("li");
+            //获取ol下的li节点
+            alert(aLis.length);
+            for(var i=0;i<aLis.length;i++){
+              aLis[i].style.backgroundColor="red";
+            } */
+
+            /* //var nodes=document.getElementsByClassName("box");
+            var oUl=document.getElementById('ul1');
+            var nodes=oUl.getElementsByClassName("box");
+
+            alert(nodes.length);
+            for(var i=0;i<nodes.length;i++){
+              nodes[i].style.backgroundColor='red';
+            } */
+
+            var nodes=document.getElementsByName('hello');
+            alert(nodes.length);
+            for(var i=0;i<nodes.length;i++){
+              nodes[i].style.backgroundColor='red';
+            }
+        }
+    </script>
+  </head>
+  <body>
+    <!-- <div
+      id="div1"
+      title="hello"
+      class="box"
+      style="width: 300px; height: 300px; background-color: red;"
+    >
+      div文本
+    </div> -->
+    <ul id="ul1">
+      <li>111</li>
+      <li class="box">111</li>
+      <li>111</li>
+      <li>111</li>
+      <li class="box">111</li>
+      <li name="hello">111</li>
+    </ul>
+    <input type="text" name="hello" />
+    <span name="hello"></span>
+    <ol id="ol1">
+      <li>222</li>
+      <li class="box">222</li>
+      <li class="box">222</li>
+      <li>222</li>
+    </ol>
+  </body>
+</html>

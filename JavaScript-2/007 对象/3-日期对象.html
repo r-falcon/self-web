@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /* 日期对象笔记
+        一、日期对象声明：
+            1.没有传入参数，默认当前系统时间
+                Wed Oct 09 2019 09:06:49 GMT+0800(中国标准时间)
+                【注】GMT 格林尼治时间
+                var d = new Date();
+                alert(d);
+            2.传入参数
+                "2000-01-01"
+                "2000/01/01"
+                按照顺序，分别传入参数  年、月、日、时、分、秒、毫秒
+                    【注】在国外月份是从0月份开始的
+                    （以1970年1月1日 0:0:0 为参考时间点去进行换算）
+        二、日期对象格式化方法：
+            var d = new Date();
+            alert(d.toLocaleDateString()+" "+d.toLocaleTimeString());
+            //系统给我们的不一定是最好的，最好自己自定义使用
+            set/get既能获取又能赋值     get只能获取
+        三、日期对象的方法：
+            1.Date.parse()
+                格式：Date.parse(日期对象)
+                功能：可以将日期对象转成毫秒数  【注】所以的参照时间都是1970年
+            2.getTime()/setTime()
+                格式：日期对象.getTime/setTime
+                功能：将当前日期对象转成毫秒数
+            例子：
+                var d = new Date();
+                alert(Date.parse(d));
+                alert(d.getTime());
+            3.d.setTime(1000);//设置成当前时间
+         */
+    </script>
+    <script>
+      //日期对象的练习
+      /* 
+        获取两个日期之间相差的天数
+        规定，传入日期格式
+        "2000-01-01"
+        2000/01/01"
+      */
+      function countOfDate(d1, d2) {
+        var dd1 = new Date(d1);
+        var dd2 = new Date(d2);
+
+        var time1 = dd1.getTime();
+        var time2 = dd2.getTime();
+        var time = Math.abs(time1 - time2);
+        return parseInt(time / 1000 / 3600 / 24);
+      }
+      alert(countOfDate("2008-08-08", "2019-10-09"));
+
+      //输入n，输出n天后的时间
+      function afterOfDate(n) {
+        var d = new Date();
+        var day = d.getDate();
+        d.setDate(day + n);
+        return d;
+      }
+      alert(afterOfDate(5));
+    </script>
+  </head>
+  <body></body>
+</html>

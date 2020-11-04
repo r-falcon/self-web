@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/vue/2.1.3/vue.js"
+    ></script>
+  </head>
+  <body>
+    <!-- 
+      使用keep-alive标签后，会有两个生命周期函数：
+        activated：页面展示的时候被执行
+        deactivated：页面被隐藏或者页面即将被替换成新的页面时被执行
+     -->
+
+    <!-- 
+      1.钩子函数：事件被动监听，一旦条件触发就执行
+      2.回调函数：主动事件，执行函数体内容
+     -->
+    <div id="app">
+      <p>{{ message }}</p>
+    </div>
+
+    <script type="text/javascript">
+      var app = new Vue({
+        el: '#app',
+        data: {
+          message: 'xuxiao is boy',
+        },
+        // **组件创建阶段4个钩子函数**
+        beforeCreate: function () {
+          //加个loading事件
+          // 实例完全被创建之前，data和methods中的数据还没有被初始化
+          console.group('beforeCreate 创建前状态===============》')
+          console.log('%c%s', 'color:red', 'el     : ' + this.$el) //undefined
+          console.log('%c%s', 'color:red', 'data   : ' + this.$data) //undefined
+          console.log('%c%s', 'color:red', 'message: ' + this.message)
+        },
+        created: function () {
+          //结束loading，做一些初始化，实现函数自执行
+          // data和methods已经被初始化好了。调用methods方法、或操作data中的数据，只能在created中操作
+          // created完成之后，如果有template就把它作为模板去渲染；否则就将el这个根节点当模板渲染
+          console.group('created 创建完毕状态===============》')
+          console.log('%c%s', 'color:red', 'el     : ' + this.$el) //undefined
+          console.log('%c%s', 'color:red', 'data   : ' + this.$data) //已被初始化
+          console.log('%c%s', 'color:red', 'message: ' + this.message) //已被初始化
+        },
+        beforeMount: function () {
+          // 模板已经在内存中编译完成，但是尚未把模板渲染到页面中
+          console.group('beforeMount 挂载前状态===============》')
+          console.log('%c%s', 'color:red', 'el     : ' + this.$el) //已被初始化
+          console.log(this.$el)
+          console.log('%c%s', 'color:red', 'data   : ' + this.$data) //已被初始化
+          console.log('%c%s', 'color:red', 'message: ' + this.message) //已被初始化
+        },
+        mounted: function () {
+          //发起后端请求，拿回数据，配合路由钩子做一些事情
+          // 内存中的模板已经真实的挂载到页面中，用户可以看到渲染好的页面。执行完毕，表示实例完全创建好了
+          console.group('mounted 挂载结束状态===============》')
+          console.log('%c%s', 'color:red', 'el     : ' + this.$el) //已被初始化
+          console.log(this.$el)
+          console.log('%c%s', 'color:red', 'data   : ' + this.$data) //已被初始化
+          console.log('%c%s', 'color:red', 'message: ' + this.message) //已被初始化
+        },
+
+        // **组件运行阶段2个钩子函数**
+        beforeUpdate: function () {
+          // 页面中显示的数据是旧的，data数据是新的，页面尚未和最新的数据保持同步
+          console.group('beforeUpdate 更新前状态===============》')
+          console.log('%c%s', 'color:red', 'el     : ' + this.$el)
+          console.log(this.$el)
+          console.log('%c%s', 'color:red', 'data   : ' + this.$data)
+          console.log('%c%s', 'color:red', 'message: ' + this.message)
+        },
+        updated: function () {
+          // 页面和data数据已经保持同步
+          /* beforeUpdate和updated在控制台内容相同是原因
+            el是虚拟dom，和data都是对象
+            console.log是个异步操作，点开时已经执行完毕最新状态
+           */
+          console.group('updated 更新完成状态===============》')
+          console.log('%c%s', 'color:red', 'el     : ' + this.$el)
+          console.log(this.$el)
+          console.log('%c%s', 'color:red', 'data   : ' + this.$data)
+          console.log('%c%s', 'color:red', 'message: ' + this.message)
+        },
+        beforeDestroy: function () {
+          console.group('beforeDestroy 销毁前状态===============》')
+          console.log('%c%s', 'color:red', 'el     : ' + this.$el)
+          console.log(this.$el)
+          console.log('%c%s', 'color:red', 'data   : ' + this.$data)
+          console.log('%c%s', 'color:red', 'message: ' + this.message)
+        },
+        destroyed: function () {
+          //当前组件已被删除，清空相关内容
+          console.group('destroyed 销毁完成状态===============》')
+          console.log('%c%s', 'color:red', 'el     : ' + this.$el)
+          console.log(this.$el)
+          console.log('%c%s', 'color:red', 'data   : ' + this.$data)
+          console.log('%c%s', 'color:red', 'message: ' + this.message)
+        },
+      })
+    </script>
+  </body>
+</html>

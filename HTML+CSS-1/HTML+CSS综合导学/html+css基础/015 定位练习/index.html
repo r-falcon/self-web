@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>css布局中的定位练习</title>
+		<style>
+			html,body{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				width: 591px;height: 300px;
+				background-image: url(images/8.jpg);
+				margin: 10px auto;
+				position: relative;
+			}
+			.p1{
+				left:150px;
+				top:200px;
+				position: absolute;
+			}
+			.p1 .point{
+				width: 15px;
+				height: 15px;
+				background: red;
+				float: left;
+			}
+			.p1 .info{
+				float: left;
+				line-height: 15px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="p1">
+				<span class="point"></span>
+				<span class="info">目的地</span>
+			</div>
+		</div>
+	</body>
+</html>

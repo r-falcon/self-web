@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        margin: 20px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        var aDivs = document.getElementsByTagName("div");
+        /* 
+            链式运动：在第一个动画结束的时候，开始第二个动画
+            【注】关键点，找到第一个动画结束的时候
+         */
+        aDivs[0].onmouseover = function () {
+          startMove(this, "width", 300, function () {
+            startMove(this, "height", 300, function () {
+              startMove(this, "opacity", 100, function () {
+                startMove(this, "fontSize", 100);
+              });
+            });
+          });
+        };
+
+        aDivs[0].onmouseout = function () {
+          startMove(this, "fontSize", 18, function () {
+            startMove(this, "opacity", 30, function () {
+              startMove(this, "height", 50, function () {
+                startMove(this, "width", 100);
+              });
+            });
+          });
+        };
+      };
+
+      /* 
+        回调函数：我们把函数当做参数传入，并且用合适的调用方式，为回调函数
+       */
+
+      function startMove(node, attr, iTarget, complete) {
+        clearInterval(node.timer);
+        node.timer = setInterval(function () {
+          //计算速度
+          var iCur = null;
+          if (attr == "opacity") {
+            iCur = parseInt(parseFloat(getStyle(node, "opacity")) * 100);
+          } else {
+            iCur = parseInt(getStyle(node, attr));
+          }
+
+          var speed = (iTarget - iCur) / 8;
+          speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+
+          if (iCur == iTarget) {
+            clearInterval(node.timer);
+            //当运动结束以后，下一步的代码在这里不能写死
+            if (complete) {
+              complete.call(node);
+            }
+          } else {
+            if (attr == "opacity") {
+              iCur += speed;
+              node.style.opacity = iCur / 100;
+              node.style.filter = "alpha(opacity=" + iCur + ")";
+            } else {
+              node.style[attr] = iCur + speed + "px";
+            }
+          }
+        }, 30);
+      }
+
+      //获取当前有效样式浏览器兼容的写法
+      function getStyle(node, cssStr) {
+        return node.currentStyle
+          ? node.currentStyle[cssStr]
+          : getComputedStyle(node)[cssStr];
+      }
+    </script>
+  </head>
+  <body>
+    <div>展示文本</div>
+  </body>
+</html>

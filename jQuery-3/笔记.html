@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+        一、jQuery语法
+        (1)基础语法
+            $(selector).action() //selector选择符，action执行对元素的操作
+            $(this).hide()  $("p").hide()   $("p.test").hide()  $("#test").hide()
+        (2)文档就绪事件
+            $(document).ready(function(){//允许我们在文档完全加载完后执行函数
+                //代码
+            })
+            简写：
+            $(function(){
+                //代码
+            })
+
+        二、jQuery选择器
+        （1）元素选择器,基于元素名选取元素     $("p")
+        （2）id选择器,选取唯一的元素需要        $("#test")
+        （3）.class选择器，通过指定的class查找元素      $(".test")
+            $("*")  选取所有元素
+            $(this) 选取当前HTML元素
+
+        三、jQuery事件
+        $(document).ready()
+        click()         当按钮点击事件被触发时会调用一个函数
+        dbclick()       当双击元素时，会发生 dblclick 事件
+        mouseenter()    当鼠标指针穿过元素时，会发生 mouseenter 事件
+        mouseleave()    当鼠标指针离开元素时，会发生 mouseleave 事件
+        mousedown()     当鼠标指针移动到元素上方，并按下鼠标按键时，会发生 mousedown 事件
+        mouseup()       当在元素上松开鼠标按钮时，会发生 mouseup 事件
+        hover()         模拟光标悬停事件。当鼠标移动到元素上时，会触发指定的第一个函数(mouseenter);当鼠标移出这个元素时，会触发指定的第二个函数(mouseleave)
+        focus()         当元素获得焦点时，发生 focus 事件
+        blur()          当元素失去焦点时，发生 blur 事件
+
+        keydown 按下发生，一直按会不断触发，返回值键盘代码
+        keypress 按下按键，产生一个字符时发生，返回ASCII码，shift、alt、ctrl不会产生字符
+        keyup   松开按键时触发
+        
+        四、jQuery效果
+        (1)显示和隐藏
+        hide() 和 show()    使用这两种方法来隐藏和显示HTML元素
+        $(selector).hide(speed,callback);//speed参数规定了显示、隐藏的速度；callback参数规定完成后需要执行的函数名
+        jquery toggle()方法来切换hide() 和 show()   //$(selector).toggle(speed,callback);
+        (2)淡入淡出
+        fadeIn() 用于淡入已隐藏的元素。$(selector).fadeIn(speed,callback)
+        fadeOut() 用于淡出可见元素。$(selector).fadeOut(speed,callback)
+        fadeToggle() 在 fadeIn() 与 fadeOut() 方法之间进行切换。$(selector).fadeToggle(speed,callback);
+        fadeTo() 允许渐变为给定的不透明度（介于0-1之间）
+        (3)滑动
+        slideDown() 用于向下滑动元素。$(selector).slideDown(speed,callback);
+        slideUp() 用于向上滑动元素。$(selector).slideUp(speed,callback);
+        slideToggle() 可以在 slideDown()与slideUp() 方法之间进行切换。$(selector).slideToggle(speed,callback);
+        (4)动画
+        animate() 用于创建自定义动画;可以操作多个属性;使用相对值(+=、-=);使用预定义值(show/hide/toggle);使用队列功能（提供针对动画的队列功能）
+        stop() 用于在动画或效果完成前对它们进行停止。stop适用于所有jQuery效果函数，包括滑动、淡入淡出和自定义动画
+        (5)jquery callback(回调函数)
+        (6)jquery 链(chaining)技术，允许我们在相同的元素上运行多条jQuery命令
+
+        五、jQuery HTML
+        jquery捕获  DOM操作
+            text()  设置或返回所选元素的文本内容
+            html()  设置或返回所选元素的内容（包括HTML标记）
+            val()   设置或返回表单字段的值
+            attr()  用于获取属性的值
+        jQuery设置
+            设置内容：(三者的回调函数)
+              text()--设置或返回所选元素的文本内容
+              html()--设置或返回所选元素的内容（包括HTML标记）
+              val()--设置或返回表单字段的值
+            设置属性
+              attr()--用于设置/改变属性的值,可以同时设置href和title的属性
+              attr()回调--有两个参数：被选元素列表中当前元素的下标，以及原始的值。然后以函数新值返回希望使用的字符串
+        jQuery添加元素
+            append()--在被选元素的结尾插入内容
+            prepend()--在被选元素的开头插入内容
+              通过append()和prepend()方法添加若干新元素
+            after()--在被选元素之后插入内容
+            before()--在被选元素之前插入内容
+              通过after()和before()方法添加若干新元素
+        jquery删除元素
+            remove()--删除被选元素（及其子元素）
+              【注】remove()方法可以接受一个参数，允许对被删除的元素进行过滤
+            empty()--从被选元素中删除子元素
+        jQuery css
+            addClass()--向被选元素添加一个或多个类
+            removeClass()--从被选元素删除一个或多个类
+            toggleClass()--对被选元素进行添加/删除类的切换操作
+            css()--设置或返回被选元素的一个或多个样式属性
+              返回指定的css属性的值：css("propertyname")
+              设置指定的css属性：css("propertyname","value")
+              设置多个css属性：css({"propertyname":"value","propertyname":"value",...})
+        jQuery尺寸
+            width()--设置或返回元素的宽度的（不包括内边距、边框或外边距）
+            height()--设置或返回元素的宽高（不包括内边距、边框或外边距）
+            innerWidth()--返回元素的宽度（包括内边距）
+            innerHeight()--返回元素的高度（包括内边距）
+            outerWidth()--返回元素的宽度（包括内边距和边框）
+            outerHeight()--返回元素的高度（包括内边距和边框）
+
+        六、jQuery遍历
+        遍历-祖先（向上遍历DOM树）
+            parent()--返回被选元素的直接父元素,只会向上一级对DOM树进行遍历
+            parents()--返回被选元素的所有祖先元素，它一路向上直到文档的根元素 (<html>).使用可选参数过滤对祖先元素的搜索
+            parentsUntil()--返回介于两个给定元素之间的所有祖先元素
+        遍历-后代（向下遍历DOM树）
+            children()--返回被选元素的所有直接子元素。使用可选参数来过滤对子元素的搜索
+            find()--返回被选元素的后代元素，一路向下直到最后一个后代。find("span"),返回后代所有的span元素；find("*"),返回div的所有后代
+        遍历-同胞
+            siblings()--返回被选元素的所有同胞元素。使用可选参数来过滤对同胞元素的搜索
+            next()--返回被选元素的下一个同胞元素，只返回一个元素
+            nextAll()--返回被选元素的所有跟随的同胞元素
+            nextUntil()--返回介于两个给定参数之间的所有跟随的同胞元素
+            prev()、prevAll()、prevUntil()--与上面类似，返回的是前面的同胞元素
+        遍历-过滤
+            first()--返回被选元素的首个元素
+            last()--返回被选元素的最后一个元素
+            eq()--返回被选元素中带有指定索引号的元素
+            filter()--允许规定一个标准。不匹配这个标准的元素会被从集合中删除，匹配的元素会被返回
+            not()--返回不匹配标准的所有元素,与filter()相反
+
+        七、jQuery Ajax[???]
+        load()--从服务器加载数据，并把返回的数据放入被选元素中。$(selector).load(URL,data,callback);
+          callback 参数规定当 load() 方法完成后所要允许的回调函数
+            responseTxt--包含调用成功时的结果内容
+            statusTxt--包含调用的状态
+            xhr--包含XMLHttpRequest对象
+        get()[从指定的资源请求数据]和post()[向指定的资源提交要处理的数据]
+          $.get()--通过HTTP GET请求从服务器上请求数据
+          $.post()--通过HTTP POST请求向服务器提交数据
+        get vs post
+            1.get数据是在URL中发送的，只能发送有限的数据；post数据在正文主体中发送，可以发送大量的数据
+            2.get发送的数据在URL栏中公开，不安全；post未公开，并且可以使用多种编码技术，具有弹性
+            3.get可以加入书签，post不可以
+            4.GET方法，只接受ASCII字符；POST方法不绑定表单数据类型，并允许二进制和ASCII字符
+            5.get可变大小约为2000字符；post最多允许8Mb的可变大小
+            6.get数据可缓存；post数据不可缓存
+            7.get主要获取信息；post主要更新数据
+
+        八、jQuery 其他
+            noConflict()  会释放对$标识符的控制，让其他脚本可以使用
+            jsonp
+
+        九、jQuery 插件【？？？】
+
+
+     -->
+  </body>
+</html>

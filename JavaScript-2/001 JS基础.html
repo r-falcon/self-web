@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS基础</title>
+    <script>
+      /* 笔记
+            为什么要学习js
+                结构（html）
+                表现（css）
+                行为（js）
+
+            什么是js
+                官方概念：是一个 跨平台 的 脚本语言
+                    平台；运行环境，一般指操作系统(windows、linux、unix、android、ios)
+                    脚本语言特点：不能独立运行，要依赖于网页（HTML网页的运行离不开浏览器，js程序的运行离不开HTML网页）
+
+            js组成
+                1.ECMAScript
+                2.DOM 文档
+                3.BOM 浏览器
+
+            js属性
+                1.type='text/javascript'    声明当前表情内写的文本格式（可省略）
+                2.src='demo.js'     引入外部的.js文件
+                【注】
+                    1.可有多个script标签，多个script标签是自上而下顺序执行
+                    2.一个scri标签只能专心的做一件事情
+
+            js输出方法：
+                1.alert()     在当前页面上弹出一个警告框，警告框中显示要显示的内容
+                2.document.write()      在当前页面上输出内容
+                    【注】如果内容中含有标签会自动解析
+                    转义字符：
+                        空格：&nbsp;
+                        版权：&copy;
+                        注册商标：&reg;
+                        小于号：&lt;
+                        大于号：&gt;
+                        和号：&amp;
+                        人民币:&yen;
+                        摄氏度：&deg;
+                3.console.log()     在控制台中输出内容，一般情况下用于代码调试
+                    小彩蛋：招聘简介
+
+            js注释：
+                1.单行注释：    ctrl+/
+                2.多行注释：    shift+alt+a
+            【注】在编写js代码的时候，要在每一行代码结束的位置加 ;（分号）
+            代码压缩：去掉编写代码的时候，有的所有空格、tab键和换行
+
+            js常量
+                常量：值不可以改变的叫做常量
+            数据类型：
+                基本数据类型：
+                    数字
+                        类型：number
+                        例子：100 -20 3.14
+                    布尔值
+                        类型：boolean
+                        例子：true false
+                    字符串
+                        类型：所有带单引号或双引号的都叫字符串（效果一样且成对出现）
+                        例子：'hello' "world" '100'
+                复合/引用数据类型：(跳，专门讲)
+                特殊数据类型：
+                    null    空
+                    undefined   声明变量的时候，没有赋值给这个变量，系统默认赋值为undefined
+                    NaN（not a number）
+            
+            js变量：
+                一、变量：值可以被修改的叫做变量
+                1.声明变量（必须声明以后才能使用）
+                    关键字（系统征用的有特殊功能的单词）：var 声明变量      ex:var num=10;
+                2.初始化：声明变量的时候，直接给这个变量赋值叫做初始化
+                  ex:   var num;    alert(num);//undefined
+                3.提高运行效率，可以将没有赋值的变量赋值为null，比undefined执行要快，因为不需要修改
+                二、变量命名：
+                    标识符：所有用户自定义的名字叫标识符。变量名也是标识符
+                    命名规则：
+                        1.只能由数字、字母、下划线和美元符号组成
+                        2.不能以数字开头
+                        3.不能是保留字和关键字
+                        4.大小写敏感
+                        5.见名思意（尽量使用英文全称）
+                        6.单词个数超过两个
+                            <1>驼峰式命名
+                            <2>下划线命名
+                三、弱引用类型
+                    变量：弱引用类型。赋值成什么数据类型就是什么数据类型
+                    【注】不建议改变当前的数据类型，容易引起歧义
+                    关键字：typeof
+                    格式：typeof 常量/变量
+                    功能：输出当前常量或者变量的数据类型
+                    ex: alert(typeof "hello");      alert(typeof typeof 100);//字符串 string
+
+         */
+    </script>
+  </head>
+  <body></body>
+</html>

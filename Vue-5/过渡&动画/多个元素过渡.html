@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+    当有相同标签名的元素切换时，需要通过 key 特性设置唯一的值来标记以让 Vue 区分它们，
+    否则 Vue 为了效率只会替换相同标签内部的内容。
+  -->
+
+    <!-- 两个 -->
+    <transition>
+      <button v-bind:key="isEditing">
+        {{ isEditing ? 'Save' : 'Edit' }}
+      </button>
+    </transition>
+    <!-- 多个 -->
+    <transition>
+      <button v-bind:key="docState">
+        {{ buttonMessage }}
+      </button>
+    </transition>
+    <script>
+        computed: { buttonMessage: function () { switch (this.docState) {
+      case 'saved': return 'Edit' case 'edited': return 'Save' case 'editing':
+      return 'Cancel' } } }
+    </script>
+  </body>
+</html>

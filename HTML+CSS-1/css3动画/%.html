@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 100px;
+        height: 100px;
+        background: red;
+        position: absolute;
+        animation: demo 5s;
+        -moz-animation: demo 5s;
+        -webkit-animation: demo 5s;
+        -o-animation: demo 5s;
+      }
+      @keyframes demo {
+        0% {
+          background: red;
+          left: 0px;
+          top: 0px;
+        }
+        25% {
+          background: yellow;
+          left: 200px;
+          top: 0px;
+        }
+        50% {
+          background: yellowgreen;
+          left: 200px;
+          top: 200px;
+        }
+        75% {
+          background: palegreen;
+          left: 0px;
+          top: 200px;
+        }
+        100% {
+          background: palevioletred;
+          left: 0px;
+          top: 0px;
+        }
+      }
+      @-moz-keyframes demo {
+        0% {
+          background: red;
+          left: 0px;
+          top: 0px;
+        }
+        25% {
+          background: yellow;
+          left: 200px;
+          top: 0px;
+        }
+        50% {
+          background: yellowgreen;
+          left: 200px;
+          top: 200px;
+        }
+        75% {
+          background: palegreen;
+          left: 0px;
+          top: 200px;
+        }
+        100% {
+          background: palevioletred;
+          left: 0px;
+          top: 0px;
+        }
+      }
+      @-webkit-keyframes demo {
+        0% {
+          background: red;
+          left: 0px;
+          top: 0px;
+        }
+        25% {
+          background: yellow;
+          left: 200px;
+          top: 0px;
+        }
+        50% {
+          background: yellowgreen;
+          left: 200px;
+          top: 200px;
+        }
+        75% {
+          background: palegreen;
+          left: 0px;
+          top: 200px;
+        }
+        100% {
+          background: palevioletred;
+          left: 0px;
+          top: 0px;
+        }
+      }
+      @-o-keyframes demo {
+        0% {
+          background: red;
+          left: 0px;
+          top: 0px;
+        }
+        25% {
+          background: yellow;
+          left: 200px;
+          top: 0px;
+        }
+        50% {
+          background: yellowgreen;
+          left: 200px;
+          top: 200px;
+        }
+        75% {
+          background: palegreen;
+          left: 0px;
+          top: 200px;
+        }
+        100% {
+          background: palevioletred;
+          left: 0px;
+          top: 0px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+  </body>
+</html>

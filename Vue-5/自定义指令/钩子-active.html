@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../vue.min.js"></script>
+  </head>
+  <body>
+    <template>
+      <div>{{msg}}</div>
+    </template>
+
+    <script>
+      export default {
+        name: 'HelloWorld',
+        data() {
+          return {
+            msg: 'hello world',
+            msg1: '',
+          }
+        },
+        beforeCreate() {
+          console.groupCollapsed('beforeCreate 创建前状态')
+          console.log('%c%s', 'color:MediumVioletRed', 'el     : ' + this.$el)
+          console.log(this.$el)
+          console.log('%c%s', 'color:MediumVioletRed', 'data   : ' + this.$data)
+          console.log(this.$data)
+          console.log('%c%s', 'color:MediumVioletRed', 'msg: ' + this.msg)
+          console.groupEnd()
+        },
+        created() {
+          console.groupCollapsed('created 创建前状态')
+          console.log('%c%s', 'color:MediumVioletRed', 'el     : ' + this.$el)
+          console.log(this.$el)
+          console.log('%c%s', 'color:MediumVioletRed', 'data   : ' + this.$data)
+          console.log(this.$data.msg)
+          console.log('%c%s', 'color:MediumVioletRed', 'msg: ' + this.msg)
+          console.groupEnd()
+        },
+        beforeMount() {
+          console.groupCollapsed('beforeMount 挂载前状态')
+          console.log('%c%s', 'color:MediumVioletRed', 'el     : ' + this.$el)
+          console.log(this.$el)
+          console.log('%c%s', 'color:MediumVioletRed', 'data   : ' + this.$data)
+          console.log(this.$data.msg)
+          console.log('%c%s', 'color:MediumVioletRed', 'msg: ' + this.msg)
+          console.groupEnd()
+        },
+        mounted() {
+          console.groupCollapsed('mounted 挂载后状态')
+          console.log('%c%s', 'color:MediumVioletRed', 'el     : ' + this.$el)
+          console.log(this.$el)
+          console.log('%c%s', 'color:MediumVioletRed', 'data   : ' + this.$data)
+          console.log(this.$data.msg)
+          console.log('%c%s', 'color:MediumVioletRed', 'msg: ' + this.msg)
+          console.groupEnd()
+          setTimeout(() => {
+            this.$data.msg = '123'
+          }, 5000)
+        },
+        activated() {
+          console.groupCollapsed('activated 挂载后状态')
+          console.log('%c%s', 'color:MediumVioletRed', 'el     : ' + this.$el)
+          console.log(this.$el)
+          console.log('%c%s', 'color:MediumVioletRed', 'data   : ' + this.$data)
+          console.log(this.$data.msg)
+          console.log('%c%s', 'color:MediumVioletRed', 'msg: ' + this.msg)
+          console.groupEnd()
+          setTimeout(() => {
+            this.$data.msg = 'hello tiantian'
+          }, 10000)
+        },
+        beforeUpdate() {
+          console.groupCollapsed('beforeUpdate 更新前状态')
+          console.log('%c%s', 'color:MediumVioletRed', 'el     : ' + this.$el)
+          console.log(this.$el)
+          console.log('%c%s', 'color:MediumVioletRed', 'data   : ' + this.$data)
+          console.log(document.getElementById('app').innerHTML)
+          console.log('%c%s', 'color:MediumVioletRed', 'msg: ' + this.msg)
+          console.groupEnd()
+        },
+        updated() {
+          console.groupCollapsed('updated 更新后状态')
+          console.log('%c%s', 'color:MediumVioletRed', 'el     : ' + this.$el)
+          console.log(this.$el)
+          console.log('%c%s', 'color:MediumVioletRed', 'data   : ' + this.$data)
+          console.log(document.getElementById('app').innerHTML)
+          console.log('%c%s', 'color:MediumVioletRed', 'msg: ' + this.msg)
+          console.groupEnd()
+          setTimeout(() => {
+            this.$destroy()
+          }, 5000)
+        },
+        beforeDestroy() {
+          console.groupCollapsed('beforeDestroy 实例销毁前状态')
+          console.log('%c%s', 'color:MediumVioletRed', 'el     : ' + this.$el)
+          console.log(this.$el)
+          console.log('%c%s', 'color:MediumVioletRed', 'data   : ' + this.$data)
+          console.log(document.getElementById('app').innerHTML)
+          console.log('%c%s', 'color:MediumVioletRed', 'msg: ' + this.msg)
+          console.groupEnd()
+        },
+        destroyed() {
+          console.groupCollapsed('destroyed 实例销毁后状态')
+          console.log('%c%s', 'color:MediumVioletRed', 'el     : ' + this.$el)
+          console.log(this.$el)
+          console.log('%c%s', 'color:MediumVioletRed', 'data   : ' + this.$data)
+          console.log(document.getElementById('app').innerHTML)
+          console.log('%c%s', 'color:MediumVioletRed', 'msg: ' + this.msg)
+          console.groupEnd()
+        },
+      }
+    </script>
+  </body>
+</html>

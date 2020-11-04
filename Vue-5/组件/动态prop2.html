@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../vue.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <ol>
+        <item-list v-for="item in sites" v-bind:list="item"></item-list>
+      </ol>
+    </div>
+    <script>
+      Vue.component('item-list', {
+        props: ['list'],
+        template: '<li>{{list.text}}</li>',
+      })
+      new Vue({
+        el: '#app',
+        data: {
+          sites: [{ text: 'falocn' }, { text: 'alice' }, { text: 'lily' }],
+        },
+      })
+    </script>
+  </body>
+</html>

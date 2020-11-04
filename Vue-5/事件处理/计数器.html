@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <!-- 
+   创建vue实例 ：
+    el挂载点；data数据；methods方法
+    v-on绑定事件，可以简写为@
+    方法中通过this关键字获取data中数据
+    v-text设置元素的文本值，简写为{{}}
+  -->
+  <div id="app">
+    <div class="input_num">
+      <button @click="sub"> - </button>
+      <span>{{ num }}</span>
+      <button @click="add"> + </button>
+    </div>
+  </div>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        num: 1,
+      },
+      methods: {
+        add: function () {
+          //console.log('add');
+          if (this.num < 10) {
+            this.num++;
+          } else {
+            alert('full');
+          }
+        },
+        sub: function () {
+          //console.log('sub');
+          if (this.num > 0) {
+            this.num--;
+          } else {
+            alert('empty');
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

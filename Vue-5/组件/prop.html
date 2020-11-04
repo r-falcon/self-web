@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../vue.min.js"></script>
+  </head>
+  <body>
+    <!-- 
+    prop 是子组件用来接受父组件传递过来的数据的一个自定义属性。
+    父组件的数据需要通过 props 把数据传给子组件，子组件需要显式地用 props 选项声明 "prop"：
+  -->
+    <div id="app">
+      <child message="hello"></child>
+    </div>
+    <script>
+      Vue.component('child', {
+        props: ['message'],
+        template: '<span>{{message}}</span>',
+      })
+      new Vue({
+        el: '#app',
+      })
+    </script>
+  </body>
+</html>

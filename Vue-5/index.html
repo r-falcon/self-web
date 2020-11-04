@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="./vue.min.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    {{count > 10 ? '大于10' : '不大于10'}}
+    <button type="button" @click="addbtnfn(2)">asc</button>
+    <button type="button" @click="descbtnfn(2)">desc</button>
+    <p v-on:mousemove="mvmo">
+      hello world
+      {{x}} <br />
+      {{y}} <br />
+    </p>
+  </div>
+  ​
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        count: 0,
+        x = 0,
+        y = 0
+      },
+      methods: {
+        addbtnfn: function (step) {
+          this.count += step
+        },
+        descbtnfn: function (step) {
+          this.count -= step
+        },
+        mvmo: function (event) {
+          this.x = event.clientX;
+          this.y = event.clientY;
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
